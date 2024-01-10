@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import loginSuccess from '../../assets/login-success.png'
 const NextFormOtp = ({phoneNumber}) => {
   const [otp, setOTP] = useState({
     digit1: '',
@@ -75,7 +75,17 @@ const NextFormOtp = ({phoneNumber}) => {
   return (
     <>
     {
-      successfullLogin ? "login successfull" : (
+      successfullLogin ? (
+        <>
+        <div class="success">
+          <img src={loginSuccess} />
+          <h3>You have successfully logged in</h3>
+        </div>
+        </>
+      ) : (
+        <>
+        <h4>Want to buy a car?</h4>
+                <p>Enter OTP to verify your number</p>
         <form onSubmit={handleOtpSubmit}>
         <div className="otp-input-container">
           
@@ -125,6 +135,7 @@ const NextFormOtp = ({phoneNumber}) => {
           Submit
         </button>
       </form>
+      </>
       )
     }
        

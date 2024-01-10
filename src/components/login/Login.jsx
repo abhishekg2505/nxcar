@@ -63,8 +63,7 @@ const Login = ({ isOpen, toggleDrawer }) => {
                 {
                 isFormCompleted ? (
                   <>
-                  <h4>Want to buy a car?</h4>
-                <p>Enter OTP to verify your number</p>
+                  
                 <NextFormOtp phoneNumber={phone} />
                   </>
                 ) :(
