@@ -133,16 +133,18 @@ nav ul li button {
 
 /* home section */
 .home-section {
-  background-image: url(assets/spin.png);
+  position: relative;
+  /* background-image: url(assets/spin.png); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: 273px;
   width: 100%;
-  height: 79vh;
+  height: 85vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .home-section h1 {
@@ -318,5 +320,96 @@ input:focus {
   .drawer,
   .container {
     width: 100%;
+  }
+}
+
+
+
+
+
+/* spread image animation */
+.wrapper{
+  position: absolute;
+  top: calc(88% - 50px);
+  left: calc(50% - 50px);
+}
+.item{
+  transition: .5s;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #4b134f;
+  display: inline-block;
+  margin: 0;
+  font-size: 3em;
+  font-family: sans-serif;
+  color: #fff;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.controls{
+  position: absolute;
+  top: 10px;
+  width: 99%;
+  text-align: center;
+}
+.right{
+    background: linear-gradient(94.42deg, #4AA09B 1.29%, #41CFC7 102.69%);
+    border-radius: 8px;
+    padding: 7px 15px;
+    color: #ffffff;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+
+
+.wrapper a:hover{
+  transition: .3s;
+  transform: scale(1.1);
+}
+
+.selection-off{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+/* just a bit of responsive */
+.item img {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .item{
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+  }
+  .wrapper{
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+  }
+  .controls{
+    top: 20px;
+  }
+  .left{
+    margin-right: 50px;
+  }
+  .right{
+    margin-left: 50px;
+  }
+  .wrapper a{
+    bottom: 20px;
+    height: 50px;
+    width: 200px;
+    font-weight: 600;
+    font-size: 1em;
   }
 }

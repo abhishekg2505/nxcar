@@ -11,6 +11,7 @@ const initialValues = {
   };
 const Login = ({ isOpen, toggleDrawer }) => {
   const [isFormCompleted, setIsFormCompleted] = useState(false);
+  const [phone, setPhone] = useState();
     const toggleDrawerClose = () => {
         toggleDrawer(!isOpen)
     }
@@ -18,19 +19,39 @@ const Login = ({ isOpen, toggleDrawer }) => {
     useFormik({
       initialValues,
       validationSchema: signUpSchema,
-      onSubmit: (values, action) => {
-        console.log(
-          "values",
-          values
-        );
-        setIsFormCompleted(true)
+      onSubmit: async (values, action) => {
+        try {
+          const response = await fetch('https://dev.nxfin.in/api/uat.app//login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              mobile: values.phone,
+              signature: 'hbhsdghadhaj', // Replace this with the actual signature logic
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          const data = await response.json();
+          console.log('API Response:', data);
+          setPhone(data.mobile);
+          setIsFormCompleted(true)
+        } catch (error) {
+          console.error('There was a problem with the request:', error);
+          setIsFormCompleted(false)
+        }
+        
         action.resetForm();
       },
     });
-  console.log(
-    "errors",
-    errors
-  );
+  // console.log(
+  //   "errors",
+  //   errors
+  // );
 
     return (
         <div className="container">
@@ -44,7 +65,7 @@ const Login = ({ isOpen, toggleDrawer }) => {
                   <>
                   <h4>Want to buy a car?</h4>
                 <p>Enter OTP to verify your number</p>
-                <NextFormOtp />
+                <NextFormOtp phoneNumber={phone} />
                   </>
                 ) :(
                   <>
