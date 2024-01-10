@@ -351,6 +351,10 @@ input:focus {
   .container {
     width: 100%;
   }
+  .home-section h2 {
+    font-size: 52px;
+    top: 134px;
+  }
 }
 
 
